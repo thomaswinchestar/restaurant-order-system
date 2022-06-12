@@ -4,8 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
 
 class Dish extends Model
 {
     use HasFactory;
+    public function category(){
+        $this->belongsTo('App\Models\Category','category_id');
+    }
 }
+

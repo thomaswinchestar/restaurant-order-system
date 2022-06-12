@@ -25,30 +25,26 @@
           <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">DataTable with default features</h3>
+                  <h3 class="card-title">Dishes</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                   <table id="dishes" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                      <th>Rendering engine</th>
-                      <th>Browser</th>
-                      <th>Platform(s)</th>
-                      <th>Engine version</th>
-                      <th>CSS grade</th>
+                      <th>Dish Name</th>
+                      <th>Category Name</th>
+                      <th>Created</th>
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($dishes as $dish)
                     <tr>
-                      <td>Trident</td>
-                      <td>Internet
-                        Explorer 4.0
-                      </td>
-                      <td>Win 95+</td>
-                      <td> 4</td>
-                      <td>X</td>
+                        <td>{{ $dish->name }}</td>
+                        <td>{{ $dish->category->name }}</td>
+                        <td>{{ $dish->created_at->diffForHumans() }}</td>
                     </tr>
+                    @endforeach
                     </tbody>
                   </table>
                 </div>
