@@ -82,7 +82,21 @@ class DishesController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
-        dd($request->all());
+        request()->validate([
+           'name' => 'required',
+           'category' => 'required',
+        ]);
+        $dish->name = $request->name;
+        $dish->category_id = $request->category;
+
+        if($request->dish_image)
+        {
+            $imageName = date('YmdHis'). "." . request()->dish_image->getClientOriginalExtension();
+            request()->dish_image->move(public_path('images'), $imageName);
+            $dish->image = $imageName;
+        }
+        $dish->save();
+        return redirect('dish')->with('message','Dish updated successfully');
     }
 
     /**
@@ -91,8 +105,9 @@ class DishesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Dish $dish)
     {
-        //
+        $dish->delete();
+        return redirect('dish')->with('message','Dish removed successfully');
     }
 }

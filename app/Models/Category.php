@@ -10,6 +10,6 @@ class Category extends Model
 {
     use HasFactory;
     public function dish(){
-        $this->hasMany('App\Models\dish');
+
     }
 }

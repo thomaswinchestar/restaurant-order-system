@@ -50,8 +50,14 @@
                         <td>{{ $dish->category->name }}</td>
                         <td>{{ $dish->created_at->diffForHumans() }}</td>
                         <td>
-                            <a href="/dish/{{ $dish->id }}/edit" class="btn btn-warning">Edit</a>
-                            <a href="/dish/{{ $dish->id }}" class="btn btn-danger">Delete</a>
+                            <div class="form-row">
+                                <a href="/dish/{{ $dish->id }}/edit" class="btn btn-warning" style="height: 40px; margin-right: 10px;" >Edit</a>
+                                <form action="{{ route('dish.destroy',$dish->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');" type="submit">Delete</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     @endforeach

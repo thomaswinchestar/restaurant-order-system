@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('style')
     <style>
-        .select2-container .select2-selection--single{
+        .select2-container .select2-selection--single {
             height: 38px;
         }
     </style>
@@ -45,7 +45,7 @@
                                         </ul>
                                     </div>
                                 @endif
-                                <form action="/dish/{{ $dish }}" method="POST" enctype="multipart/form-data">
+                                <form action="/dish/{{ $dish->id }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">
@@ -56,14 +56,17 @@
                                         <label for="">Category</label>
                                         <select name="category" class="js-example-basic-single form-control">
                                             <option value="">Select Category</option>
-                                            @foreach($categories as $cat)
-                                                <option value="{{ $cat->id }}" {{ $cat->id == $dish->category_id ? 'selected' : ''}}>{{ $cat->name }}</option>
+                                            @foreach ($categories as $cat)
+                                                <option value="{{ $cat->id }}"
+                                                    {{ $cat->id == $dish->category_id ? 'selected' : '' }}>
+                                                    {{ $cat->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Image</label><br>
-                                        <img src="{{ url('/images/'.$dish->image) }}" width="150" height="150" class="img-rounded">
+                                        <img src="{{ url('/images/' . $dish->image) }}" width="150" height="150"
+                                            class="img-rounded">
                                         <input type="file" name="dish_image" class="form-control mt-3">
                                     </div>
                                     <button type="submit" class="btn btn-success">Update</button>
@@ -82,5 +85,3 @@
         <!-- /.content -->
     </div>
 @endsection
-
-
