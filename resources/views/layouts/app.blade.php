@@ -150,7 +150,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
-                            <a href="/dish" class="nav-link active">
+                            <a href="/dish" class="nav-link {{ Request::segment(1) == 'dish' ? 'active' : ''}}">
                                 <i class="nav-icon fas fa-utensils"></i>
                                 <p>
                                     Dishes
@@ -158,7 +158,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/order" class="nav-link">
+                            <a href="/order" class="nav-link {{ Request::segment(1) == 'order' ? 'active' : ''}}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Orders
